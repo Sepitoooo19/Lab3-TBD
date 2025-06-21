@@ -3,9 +3,11 @@ package bdavanzadas.Lab3.repositories;
 import bdavanzadas.Lab3.entities.DealerEntity;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
+import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
+@Repository
 public interface DealerRepository extends MongoRepository<DealerEntity, String> {
     // Buscar repartidor por ID de usuario
     Optional<DealerEntity> findByUserId(String userId);

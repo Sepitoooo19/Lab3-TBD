@@ -3,9 +3,11 @@ package bdavanzadas.Lab3.repositories;
 import bdavanzadas.Lab3.entities.ClientEntity;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
+import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
+@Repository
 public interface ClientRepository extends MongoRepository<ClientEntity, String> {
     Optional<ClientEntity> findByUserId(String userId);
 
