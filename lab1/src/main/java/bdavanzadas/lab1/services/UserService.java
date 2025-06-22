@@ -2,6 +2,7 @@ package bdavanzadas.lab1.services;
 
 import bdavanzadas.lab1.entities.ClientEntity;
 import bdavanzadas.lab1.entities.DealerEntity;
+import bdavanzadas.lab1.entities.RatingEntity;
 import bdavanzadas.lab1.entities.UserEntity;
 import bdavanzadas.lab1.repositories.ClientRepository;
 import bdavanzadas.lab1.repositories.DealerRepository;
@@ -11,6 +12,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.awt.*;
+import java.util.List;
 
 
 /**
@@ -192,5 +197,11 @@ public class UserService {
             return (Long) authentication.getPrincipal(); // Retorna el ID del usuario autenticado
         }
         throw new RuntimeException("Usuario no autenticado");
+    }
+
+    //obtener todos sin iterable
+    @Transactional(readOnly = true)
+    public List<UserEntity> getAllUsers() {
+        return userRepository.findAll();
     }
 }

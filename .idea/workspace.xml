@@ -5,14 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8def219c-fcda-4bfe-9b1d-3724d649d1c0" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/Controllers/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/Controllers/AuthController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/Controllers/MigrationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/Controllers/MigrationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/documentRepositories/ProductDocumentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/documentRepositories/ProductDocumentRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/documentRepositories/RatingDocumentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/documentRepositories/RatingDocumentRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/documentRepositories/UserDocumentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/documentRepositories/UserDocumentRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/documents/ProductDocument.java" beforeDir="false" afterPath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/documents/ProductDocument.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/documents/RatingDocument.java" beforeDir="false" afterPath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/documents/RatingDocument.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/documents/UserDocument.java" beforeDir="false" afterPath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/documents/UserDocument.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/repositories/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/repositories/UserRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/services/MigrationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/services/MigrationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/services/UserService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,7 +107,7 @@
       <updated>1750545961836</updated>
       <workItem from="1750545963112" duration="377000" />
       <workItem from="1750546348100" duration="1282000" />
-      <workItem from="1750553569282" duration="11575000" />
+      <workItem from="1750553569282" duration="12259000" />
     </task>
     <servers />
   </component>

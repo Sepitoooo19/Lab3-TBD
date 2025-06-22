@@ -201,6 +201,33 @@ public class MigrationService {
         productDocumentRepository.save(document);
     }
 
+    public void migrateRatingToMongo(RatingEntity entityFromPostgres) {
+        Integer ratingId = entityFromPostgres.getId();
+
+        // Verificamos si ya existe un documento para este ratingId
+        if (ratingDocumentRepository.existsByRatingId(ratingId)) {
+            System.out.println("Documento ya existe para ratingId: " + ratingId);
+            return;
+        }
+
+        RatingDocument document = RatingMapper.fromRatingEntity(entityFromPostgres);
+        ratingDocumentRepository.save(document);
+    }
+
+    public void migrateUserToMongo(UserEntity entityFromPostgres) {
+        Integer userId = entityFromPostgres.getId();
+
+        // Verificamos si ya existe un documento para este userId
+        if (userDocumentRepository.existsByUserId(userId)) {
+            System.out.println("Documento ya existe para userId: " + userId);
+            return;
+        }
+
+        UserDocument document = UserMapper.fromUserEntity(entityFromPostgres);
+        userDocumentRepository.save(document);
+    }
+
+
 
 
 }

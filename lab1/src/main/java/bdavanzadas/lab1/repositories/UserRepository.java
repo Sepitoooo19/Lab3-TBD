@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
 import java.sql.Statement;
+import java.util.List;
 import java.util.Map;
 
 
@@ -88,5 +89,22 @@ public class UserRepository implements UserRepositoryInt {
         } else {
             throw new IllegalStateException("No se pudo generar el ID para el usuario");
         }
+    }
+
+    //obtener todos
+    /**
+     * Metodo para obtener todos los usuarios de la base de datos.
+     * @return Una lista de usuarios.
+     *
+     * */
+    public List<UserEntity> findAll() {
+        String sql = "SELECT * FROM users";
+        return jdbcTemplate.query(sql, (rs, rowNum) ->
+                new UserEntity(
+                        rs.getInt("id"),
+                        rs.getString("username"),
+                        rs.getString("password"),
+                        rs.getString("role")
+                ));
     }
 }

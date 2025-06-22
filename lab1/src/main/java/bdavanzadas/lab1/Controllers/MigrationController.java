@@ -154,4 +154,28 @@ public class MigrationController {
 
         return ResponseEntity.ok("Productos migrados a MongoDB");
     }
+
+    @PostMapping("/ratings")
+    public ResponseEntity<String> migrateRatingsToMongo() {
+        List<RatingEntity> postgresRatings = ratingService.getAllRatings();
+
+        for (RatingEntity rating : postgresRatings) {
+            migrationService.migrateRatingToMongo(rating);
+        }
+
+        return ResponseEntity.ok("Calificaciones migradas a MongoDB");
+    }
+
+    @PostMapping("/users")
+    public ResponseEntity<String> migrateUsersToMongo() {
+        List<UserEntity> postgresUsers = userService.getAllUsers();
+
+        for (UserEntity user : postgresUsers) {
+            migrationService.migrateUserToMongo(user);
+        }
+
+        return ResponseEntity.ok("Usuarios migrados a MongoDB");
+    }
+
+
 }

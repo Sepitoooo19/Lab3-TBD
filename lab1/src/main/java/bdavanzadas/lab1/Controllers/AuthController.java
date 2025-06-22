@@ -135,4 +135,15 @@ public class AuthController {
             ));
         }
     }
+
+    //obtener todos los usuarios
+    @GetMapping("/users")
+    public ResponseEntity<?> getAllUsers() {
+        try {
+            return ResponseEntity.ok(userService.getAllUsers());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(Map.of("success", false, "message", "Error al obtener usuarios: " + e.getMessage()));
+        }
+    }
 }
