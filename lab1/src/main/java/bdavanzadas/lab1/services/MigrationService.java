@@ -18,15 +18,18 @@ public class MigrationService {
     private final DealerDocumentRepository dealerDocumentRepository;
     private final CompanyDocumentRepository companyDocumentRepository;
     private final CompanyService companyService;
+    private final CoverageAreaDocumentRepository coverageAreaDocumentRepository;
 
     public MigrationService(ClientDocumentRepository clientDocumentRepository,
                             DealerDocumentRepository dealerDocumentRepository,
                             CompanyService companyService,
-                            CompanyDocumentRepository companyDocumentRepository) {
+                            CompanyDocumentRepository companyDocumentRepository,
+                            CoverageAreaDocumentRepository coverageAreaDocumentRepository) {
         this.clientDocumentRepository = clientDocumentRepository;
         this.dealerDocumentRepository = dealerDocumentRepository;
         this.companyService = companyService;
         this.companyDocumentRepository = companyDocumentRepository;
+        this.coverageAreaDocumentRepository = coverageAreaDocumentRepository;
 
     }
 
@@ -88,6 +91,19 @@ public class MigrationService {
                 .collect(Collectors.toList()));
 
         companyDocumentRepository.save(document);
+    }
+
+    public void migrateCoverageAreaToMongo(CoverageAreaEntity entityFromPostgres) {
+        Integer coverageAreaId = entityFromPostgres.getId();
+
+        // Verificamos si ya existe un documento para este coverageAreaId
+        if (coverageAreaDocumentRepository.existsByCoverageAreaId(coverageAreaId)) {
+            System.out.println("Documento ya existe para coverageAreaId: " + coverageAreaId);
+            return;
+        }
+
+        CoverageAreaDocument document = CoverageAreaMapper.fromCoverageAreaEntity(entityFromPostgres);
+        coverageAreaDocumentRepository.save(document);
     }
 
 

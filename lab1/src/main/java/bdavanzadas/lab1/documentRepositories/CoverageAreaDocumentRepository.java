@@ -13,4 +13,6 @@ public interface CoverageAreaDocumentRepository extends MongoRepository<Coverage
     // - findById(String id)
     // - save()
     // - deleteById()
+
+    boolean existsByCoverageAreaId(Integer coverageAreaId);
 }
