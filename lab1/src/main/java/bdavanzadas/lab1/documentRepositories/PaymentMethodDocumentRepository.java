@@ -5,6 +5,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface PaymentMethodDocumentRepository extends MongoRepository<PaymentMethodDocument, String> {
 
@@ -22,4 +23,8 @@ public interface PaymentMethodDocumentRepository extends MongoRepository<Payment
      */
     @Query("{ 'companyIds': ?0 }")
     List<PaymentMethodDocument> findByCompanyId(String companyId);
+
+
+    boolean existsByPaymentMethodId(Integer paymentMethodId);
+    Optional<PaymentMethodDocument> findByPaymentMethodId(Integer paymentMethodId);
 }

@@ -23,6 +23,10 @@ public class MigrationController {
     private final EmergencyReportService emergencyReportService;
     private final OrderDetailsService orderDetailsService;
     private final OrdersService ordersService;
+    private final PaymentMethodService paymentMethodService;
+    private final ProductService productService;
+    private final RatingService ratingService;
+    private final UserService userService;
 
     public MigrationController(ClientService clientService,
                                MigrationService migrationService,
@@ -31,7 +35,11 @@ public class MigrationController {
                                CoverageAreaService coverageAreaService,
                                EmergencyReportService emergencyReportService,
                                OrderDetailsService orderDetailsService,
-                               OrdersService ordersService) {
+                               OrdersService ordersService,
+                               PaymentMethodService paymentMethodService,
+                               ProductService productService,
+                               RatingService ratingService,
+                               UserService userService) {
         this.clientService = clientService;
         this.migrationService = migrationService;
         this.dealerService = dealerService;
@@ -40,6 +48,10 @@ public class MigrationController {
         this.emergencyReportService = emergencyReportService;
         this.orderDetailsService = orderDetailsService;
         this.ordersService = ordersService;
+        this.paymentMethodService = paymentMethodService;
+        this.productService = productService;
+        this.ratingService = ratingService;
+        this.userService = userService;
 
     }
 
@@ -118,5 +130,17 @@ public class MigrationController {
         }
 
         return ResponseEntity.ok("Pedidos migrados a MongoDB");
+    }
+
+    //migratePaymentMethodToMongo
+    @PostMapping("/payment-methods")
+    public ResponseEntity<String> migratePaymentMethodsToMongo() {
+        List<PaymentMethodEntity> postgresPaymentMethods = paymentMethodService.getallPaymentMethods();
+
+        for (PaymentMethodEntity paymentMethod : postgresPaymentMethods) {
+            migrationService.migratePaymentMethodToMongo(paymentMethod);
+        }
+
+        return ResponseEntity.ok("Métodos de pago migrados a MongoDB");
     }
 }

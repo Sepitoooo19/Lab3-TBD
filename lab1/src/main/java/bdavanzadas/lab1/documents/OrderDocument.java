@@ -19,7 +19,7 @@ import java.util.List;
 public class OrderDocument {
     private String id;
     @Indexed(unique = true)
-    private String orderId;
+    private Integer orderId;
     private LocalDateTime orderDate;
     private LocalDateTime deliveryDate;
     private String status;

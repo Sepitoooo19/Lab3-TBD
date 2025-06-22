@@ -23,6 +23,10 @@ public class MigrationService {
     private final OrderDetailDocumentRepository orderDetailDocumentRepository;
     private final OrderDocumentRepository orderDocumentRepository;
     private final OrdersService ordersService;
+    private final PaymentMethodDocumentRepository paymentMethodDocumentRepository;
+    private final ProductDocumentRepository productDocumentRepository;
+    private final RatingDocumentRepository ratingDocumentRepository;
+    private final UserDocumentRepository userDocumentRepository;
 
     public MigrationService(ClientDocumentRepository clientDocumentRepository,
                             DealerDocumentRepository dealerDocumentRepository,
@@ -31,7 +35,11 @@ public class MigrationService {
                             CoverageAreaDocumentRepository coverageAreaDocumentRepository,
                             EmergencyReportDocumentRepository emergencyReportDocumentRepository,
                             OrderDetailDocumentRepository orderDetailDocumentRepository,
-                            OrderDocumentRepository orderDocumentRepository, OrdersService ordersService) {
+                            OrderDocumentRepository orderDocumentRepository, OrdersService ordersService,
+                            PaymentMethodDocumentRepository paymentMethodDocumentRepository,
+                            ProductDocumentRepository productDocumentRepository,
+                            RatingDocumentRepository ratingDocumentRepository,
+                            UserDocumentRepository userDocumentRepository) {
         this.clientDocumentRepository = clientDocumentRepository;
         this.dealerDocumentRepository = dealerDocumentRepository;
         this.companyService = companyService;
@@ -41,6 +49,10 @@ public class MigrationService {
         this.orderDetailDocumentRepository = orderDetailDocumentRepository;
         this.orderDocumentRepository = orderDocumentRepository;
         this.ordersService = ordersService;
+        this.paymentMethodDocumentRepository = paymentMethodDocumentRepository;
+        this.productDocumentRepository = productDocumentRepository;
+        this.ratingDocumentRepository = ratingDocumentRepository;
+        this.userDocumentRepository = userDocumentRepository;
     }
 
     public void migrateClientToMongo(ClientEntity entityFromPostgres) {
@@ -161,6 +173,19 @@ public class MigrationService {
         orderDocumentRepository.save(document);
 
         System.out.println("Migración exitosa para orderId: " + orderId);
+    }
+
+    public void migratePaymentMethodToMongo(PaymentMethodEntity entityFromPostgres) {
+        Integer paymentMethodId = entityFromPostgres.getId();
+
+        // Verificamos si ya existe un documento para este paymentMethodId
+        if (paymentMethodDocumentRepository.existsByPaymentMethodId(paymentMethodId)) {
+            System.out.println("Documento ya existe para paymentMethodId: " + paymentMethodId);
+            return;
+        }
+
+        PaymentMethodDocument document = PaymentMethodMapper.fromPaymentMethodEntity(entityFromPostgres);
+        paymentMethodDocumentRepository.save(document);
     }
 
 

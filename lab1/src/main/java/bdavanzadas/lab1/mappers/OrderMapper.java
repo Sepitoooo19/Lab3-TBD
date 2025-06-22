@@ -27,7 +27,7 @@ public class OrderMapper {
         }
 
         return OrderDocument.builder()
-                .orderId(String.valueOf(entity.getId()))
+                .orderId(entity.getId())
                 .orderDate(convertDateToLocalDateTime(entity.getOrderDate()))
                 .deliveryDate(convertDateToLocalDateTime(entity.getDeliveryDate()))
                 .status(entity.getStatus())
