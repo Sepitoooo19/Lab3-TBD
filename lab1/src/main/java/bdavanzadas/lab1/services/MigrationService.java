@@ -19,17 +19,20 @@ public class MigrationService {
     private final CompanyDocumentRepository companyDocumentRepository;
     private final CompanyService companyService;
     private final CoverageAreaDocumentRepository coverageAreaDocumentRepository;
+    private final EmergencyReportDocumentRepository emergencyReportDocumentRepository;
 
     public MigrationService(ClientDocumentRepository clientDocumentRepository,
                             DealerDocumentRepository dealerDocumentRepository,
                             CompanyService companyService,
                             CompanyDocumentRepository companyDocumentRepository,
-                            CoverageAreaDocumentRepository coverageAreaDocumentRepository) {
+                            CoverageAreaDocumentRepository coverageAreaDocumentRepository,
+                            EmergencyReportDocumentRepository emergencyReportDocumentRepository) {
         this.clientDocumentRepository = clientDocumentRepository;
         this.dealerDocumentRepository = dealerDocumentRepository;
         this.companyService = companyService;
         this.companyDocumentRepository = companyDocumentRepository;
         this.coverageAreaDocumentRepository = coverageAreaDocumentRepository;
+        this.emergencyReportDocumentRepository = emergencyReportDocumentRepository;
 
     }
 
@@ -104,6 +107,19 @@ public class MigrationService {
 
         CoverageAreaDocument document = CoverageAreaMapper.fromCoverageAreaEntity(entityFromPostgres);
         coverageAreaDocumentRepository.save(document);
+    }
+
+    public void migrateEmergencyReportToMongo(EmergencyReportEntity entityFromPostgres) {
+        Integer emergencyReportId = entityFromPostgres.getId();
+
+        // Verificamos si ya existe un documento para este emergencyReportId
+        if (emergencyReportDocumentRepository.existsByReportId(emergencyReportId)) {
+            System.out.println("Documento ya existe para emergencyReportId: " + emergencyReportId);
+            return;
+        }
+
+        EmergencyReportDocument document = EmergencyReportMapper.fromEmergencyReportEntity(entityFromPostgres);
+        emergencyReportDocumentRepository.save(document);
     }
 
 

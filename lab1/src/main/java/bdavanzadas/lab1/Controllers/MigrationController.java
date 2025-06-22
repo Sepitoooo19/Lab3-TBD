@@ -20,17 +20,20 @@ public class MigrationController {
     private final CompanyService companyService;
     private final MigrationService migrationService;
     private final CoverageAreaService coverageAreaService;
+    private final EmergencyReportService emergencyReportService;
 
     public MigrationController(ClientService clientService,
                                MigrationService migrationService,
                                DealerService dealerService,
                                CompanyService companyService,
-                               CoverageAreaService coverageAreaService) {
+                               CoverageAreaService coverageAreaService,
+                               EmergencyReportService emergencyReportService) {
         this.clientService = clientService;
         this.migrationService = migrationService;
         this.dealerService = dealerService;
         this.companyService = companyService;
         this.coverageAreaService = coverageAreaService;
+        this.emergencyReportService = emergencyReportService;
 
     }
 
@@ -76,5 +79,16 @@ public class MigrationController {
         }
 
         return ResponseEntity.ok("Áreas de cobertura migradas a MongoDB");
+    }
+
+    @PostMapping("/emergency-reports")
+    public ResponseEntity<String> migrateEmergencyReportsToMongo() {
+        List<bdavanzadas.lab1.entities.EmergencyReportEntity> postgresEmergencyReports = emergencyReportService.getAllEmergencyReports();
+
+        for (bdavanzadas.lab1.entities.EmergencyReportEntity emergencyReport : postgresEmergencyReports) {
+            migrationService.migrateEmergencyReportToMongo(emergencyReport);
+        }
+
+        return ResponseEntity.ok("Informes de emergencia migrados a MongoDB");
     }
 }

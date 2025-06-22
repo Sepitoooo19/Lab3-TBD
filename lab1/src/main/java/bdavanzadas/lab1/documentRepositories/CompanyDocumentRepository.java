@@ -27,8 +27,8 @@ public interface CompanyDocumentRepository extends MongoRepository<CompanyDocume
     @Query("{ 'coverageAreaIds': ?0 }")
     List<CompanyDocument> findByCoverageAreaId(String coverageAreaId);
 
-    boolean existsByCompanyId(Integer clientId);
-    Optional<ClientDocument> findByCompanyId(Integer clientId);
+    boolean existsByCompanyId(Integer companyId);
+    Optional<ClientDocument> findByCompanyId(Integer companyId);
 
 
 }
