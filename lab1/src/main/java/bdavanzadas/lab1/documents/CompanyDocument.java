@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 
@@ -15,6 +16,10 @@ import java.util.List;
 @Document(collection = "companies")
 public class CompanyDocument {
     private String id;
+
+    @Indexed(unique = true)
+    private Integer companyId;
+
     private String name;
     private String email;
     private String phone;

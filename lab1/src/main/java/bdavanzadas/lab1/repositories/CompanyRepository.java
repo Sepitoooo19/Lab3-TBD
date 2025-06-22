@@ -151,6 +151,17 @@ public class CompanyRepository implements CompanyRepositoryInt {
     }
 
 
+    public List<Integer> getPaymentMethodIdsByCompanyId(int companyId) {
+        String sql = "SELECT payment_method_id FROM company_payment_methods WHERE company_id = ?";
+        return jdbcTemplate.queryForList(sql, Integer.class, companyId);
+    }
+
+    public List<Integer> getCoverageAreaIdsByCompanyId(int companyId) {
+        String sql = "SELECT coverage_id FROM coverage_area_company WHERE company_id = ?";
+        return jdbcTemplate.queryForList(sql, Integer.class, companyId);
+    }
+
+
     /**
      * Método para obtener las compañías con más entregas fallidas.
      * @return Lista de CompanyEntity con las compañías y sus métricas de entregas fallidas.

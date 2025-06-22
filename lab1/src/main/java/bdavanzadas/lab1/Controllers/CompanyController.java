@@ -99,6 +99,45 @@ public class CompanyController {
         service.deleteCompany(id);
     }
 
+
+    //getCoverageAreaIdsByCompanyId
+    /**
+     *
+     * Endpoint para obtener los IDs de los métodos de pago asociados a una compañía.
+     * Este endpoint devuelve una lista de IDs de métodos de pago asociados a una compañía específica.
+     *
+     * */
+    @GetMapping("/{companyId}/payment-methods")
+    public ResponseEntity<List<Integer>> getPaymentMethodIdsByCompanyId(@PathVariable int companyId) {
+        try {
+            List<Integer> paymentMethodIds = service.getPaymentMethodIdsByCompanyId(companyId);
+            return ResponseEntity.ok(paymentMethodIds);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(Collections.singletonList(-1));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Collections.singletonList(-1));
+        }
+    }
+
+    /**
+     *
+     * Endpoint para obtener los IDs de las áreas de cobertura asociadas a una compañía.
+     * Este endpoint devuelve una lista de IDs de áreas de cobertura asociadas a una compañía específica.
+     *
+     * */
+
+    @GetMapping("/{companyId}/coverage-areas")
+    public ResponseEntity<List<Integer>> getCoverageAreaIdsByCompanyId(@PathVariable int companyId) {
+        try {
+            List<Integer> coverageAreaIds = service.getCoverageAreaIdsByCompanyId(companyId);
+            return ResponseEntity.ok(coverageAreaIds);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(Collections.singletonList(-1));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Collections.singletonList(-1));
+        }
+    }
+
     /**
      *
      * Endpoint para obtener las compañías con más entregas fallidas.

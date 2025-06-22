@@ -1,5 +1,6 @@
 package bdavanzadas.lab1.documentRepositories;
 
+import bdavanzadas.lab1.documents.ClientDocument;
 import bdavanzadas.lab1.documents.CompanyDocument;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
@@ -25,6 +26,9 @@ public interface CompanyDocumentRepository extends MongoRepository<CompanyDocume
     // Búsqueda por área de cobertura
     @Query("{ 'coverageAreaIds': ?0 }")
     List<CompanyDocument> findByCoverageAreaId(String coverageAreaId);
+
+    boolean existsByCompanyId(Integer clientId);
+    Optional<ClientDocument> findByCompanyId(Integer clientId);
 
 
 }

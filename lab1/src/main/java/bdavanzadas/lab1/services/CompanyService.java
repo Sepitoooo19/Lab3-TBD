@@ -55,6 +55,24 @@ public class CompanyService {
         return companyRepository.getCompaniesWithMostFailedDeliveries();
     }
 
+    //getPaymentMethodIdsByCompanyId
+    @Transactional(readOnly = true)
+    public List<Integer> getPaymentMethodIdsByCompanyId(int companyId) {
+        if (companyId <= 0) {
+            throw new IllegalArgumentException("El ID de compañía debe ser positivo");
+        }
+        return companyRepository.getPaymentMethodIdsByCompanyId(companyId);
+    }
+
+    //getCoverageAreaIdsByCompanyId
+    @Transactional(readOnly = true)
+    public List<Integer> getCoverageAreaIdsByCompanyId(int companyId) {
+        if (companyId <= 0) {
+            throw new IllegalArgumentException("El ID de compañía debe ser positivo");
+        }
+        return companyRepository.getCoverageAreaIdsByCompanyId(companyId);
+    }
+
     @Transactional
     public void updateCompanyMetrics() {
         companyRepository.updateCompanyMetrics();

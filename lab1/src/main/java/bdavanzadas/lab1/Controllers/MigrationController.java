@@ -52,4 +52,15 @@ public class MigrationController {
 
         return ResponseEntity.ok("Concesionarios migrados a MongoDB");
     }
+
+    @PostMapping("/companies")
+    public ResponseEntity<String> migrateCompaniesToMongo() {
+        List<bdavanzadas.lab1.entities.CompanyEntity> postgresCompanies = companyService.getAllCompanies();
+
+        for (bdavanzadas.lab1.entities.CompanyEntity company : postgresCompanies) {
+            migrationService.migrateCompanyToMongo(company);
+        }
+
+        return ResponseEntity.ok("Empresas migradas a MongoDB");
+    }
 }
