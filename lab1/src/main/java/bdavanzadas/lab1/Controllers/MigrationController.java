@@ -1,7 +1,7 @@
 package bdavanzadas.lab1.Controllers;
 
 import bdavanzadas.lab1.entities.ClientEntity;
-import bdavanzadas.lab1.entities.DealerEntity;
+import bdavanzadas.lab1.entities.*;
 import bdavanzadas.lab1.services.ClientService;
 import bdavanzadas.lab1.services.CompanyService;
 import bdavanzadas.lab1.services.*;
@@ -21,19 +21,25 @@ public class MigrationController {
     private final MigrationService migrationService;
     private final CoverageAreaService coverageAreaService;
     private final EmergencyReportService emergencyReportService;
+    private final OrderDetailsService orderDetailsService;
+    private final OrdersService ordersService;
 
     public MigrationController(ClientService clientService,
                                MigrationService migrationService,
                                DealerService dealerService,
                                CompanyService companyService,
                                CoverageAreaService coverageAreaService,
-                               EmergencyReportService emergencyReportService) {
+                               EmergencyReportService emergencyReportService,
+                               OrderDetailsService orderDetailsService,
+                               OrdersService ordersService) {
         this.clientService = clientService;
         this.migrationService = migrationService;
         this.dealerService = dealerService;
         this.companyService = companyService;
         this.coverageAreaService = coverageAreaService;
         this.emergencyReportService = emergencyReportService;
+        this.orderDetailsService = orderDetailsService;
+        this.ordersService = ordersService;
 
     }
 
@@ -61,9 +67,9 @@ public class MigrationController {
 
     @PostMapping("/companies")
     public ResponseEntity<String> migrateCompaniesToMongo() {
-        List<bdavanzadas.lab1.entities.CompanyEntity> postgresCompanies = companyService.getAllCompanies();
+        List<CompanyEntity> postgresCompanies = companyService.getAllCompanies();
 
-        for (bdavanzadas.lab1.entities.CompanyEntity company : postgresCompanies) {
+        for (CompanyEntity company : postgresCompanies) {
             migrationService.migrateCompanyToMongo(company);
         }
 
@@ -72,9 +78,9 @@ public class MigrationController {
 
     @PostMapping("/coverage-areas")
     public ResponseEntity<String> migrateCoverageAreasToMongo() {
-        List<bdavanzadas.lab1.entities.CoverageAreaEntity> postgresCoverageAreas = coverageAreaService.getAllCoverageAreas();
+        List<CoverageAreaEntity> postgresCoverageAreas = coverageAreaService.getAllCoverageAreas();
 
-        for (bdavanzadas.lab1.entities.CoverageAreaEntity coverageArea : postgresCoverageAreas) {
+        for (CoverageAreaEntity coverageArea : postgresCoverageAreas) {
             migrationService.migrateCoverageAreaToMongo(coverageArea);
         }
 
@@ -83,12 +89,34 @@ public class MigrationController {
 
     @PostMapping("/emergency-reports")
     public ResponseEntity<String> migrateEmergencyReportsToMongo() {
-        List<bdavanzadas.lab1.entities.EmergencyReportEntity> postgresEmergencyReports = emergencyReportService.getAllEmergencyReports();
+        List<EmergencyReportEntity> postgresEmergencyReports = emergencyReportService.getAllEmergencyReports();
 
-        for (bdavanzadas.lab1.entities.EmergencyReportEntity emergencyReport : postgresEmergencyReports) {
+        for (EmergencyReportEntity emergencyReport : postgresEmergencyReports) {
             migrationService.migrateEmergencyReportToMongo(emergencyReport);
         }
 
         return ResponseEntity.ok("Informes de emergencia migrados a MongoDB");
+    }
+
+    @PostMapping("/order-details")
+    public ResponseEntity<String> migrateOrderDetailsToMongo() {
+        List<OrderDetailsEntity> postgresOrderDetails = orderDetailsService.getAllOrderDetails();
+
+        for (OrderDetailsEntity orderDetails : postgresOrderDetails) {
+            migrationService.migrateOrderDetailToMongo(orderDetails);
+        }
+
+        return ResponseEntity.ok("Detalles de pedidos migrados a MongoDB");
+    }
+    //migrateOrderToMongo
+    @PostMapping("/order")
+    public ResponseEntity<String> migrateOrdersToMongo() {
+        List<OrdersEntity> postgresOrders = ordersService.getAllOrders();
+
+        for (OrdersEntity order : postgresOrders) {
+            migrationService.migrateOrderToMongo(order);
+        }
+
+        return ResponseEntity.ok("Pedidos migrados a MongoDB");
     }
 }

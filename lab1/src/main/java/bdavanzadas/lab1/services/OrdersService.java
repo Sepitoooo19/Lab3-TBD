@@ -97,7 +97,18 @@ public class OrdersService {
         ordersRepository.delete(id);
     }
 
+    //getProductIdsByOrderId
 
+    /**
+     * Metodo para obtener los ids de los productos asociados a un pedido.
+     * @param "orderId" El id del pedido.
+     * @return Una lista de ids de productos asociados al pedido.
+     */
+    @Transactional(readOnly = true)
+    public List<Integer> getProductIdsByOrderId(int orderId) {
+        String sql = "SELECT product_id FROM order_products WHERE order_id = ?";
+        return jdbcTemplate.queryForList(sql, Integer.class, orderId);
+    }
     /**
      * Metodo para buscar un pedido por su id.
      * @param "id" El id del pedido a buscar.

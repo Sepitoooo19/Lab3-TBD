@@ -5,10 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8def219c-fcda-4bfe-9b1d-3724d649d1c0" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/Controllers/MigrationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/Controllers/MigrationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/documentRepositories/CompanyDocumentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/documentRepositories/CompanyDocumentRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/documentRepositories/EmergencyReportDocumentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/documentRepositories/EmergencyReportDocumentRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/Controllers/OrdersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/Controllers/OrdersController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/documentRepositories/OrderDetailDocumentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/documentRepositories/OrderDetailDocumentRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/documentRepositories/OrderDocumentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/documentRepositories/OrderDocumentRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/documents/OrderDetailDocument.java" beforeDir="false" afterPath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/documents/OrderDetailDocument.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/documents/OrderDocument.java" beforeDir="false" afterPath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/documents/OrderDocument.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/repositories/OrdersRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/repositories/OrdersRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/services/MigrationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/services/MigrationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/services/OrdersService.java" beforeDir="false" afterPath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/services/OrdersService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,7 +112,7 @@
       <updated>1750545961836</updated>
       <workItem from="1750545963112" duration="377000" />
       <workItem from="1750546348100" duration="1282000" />
-      <workItem from="1750553569282" duration="7261000" />
+      <workItem from="1750553569282" duration="9586000" />
     </task>
     <servers />
   </component>

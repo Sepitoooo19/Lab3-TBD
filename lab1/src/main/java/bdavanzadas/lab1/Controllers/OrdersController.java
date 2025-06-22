@@ -125,6 +125,25 @@ public class OrdersController {
         ordersService.deleteOrder(id);
         return ResponseEntity.noContent().build();
     }
+
+    //getProductIdsByOrderId
+    /**
+     * Endpoint para obtener los IDs de productos asociados a un pedido.
+     * Este endpoint devuelve una lista de IDs de productos específicos basados en el ID del pedido.
+     */
+    @GetMapping("/{orderId}/product-ids")
+    public ResponseEntity<List<Integer>> getProductIdsByOrderId(@PathVariable int orderId) {
+        try {
+            List<Integer> productIds = ordersService.getProductIdsByOrderId(orderId);
+            if (productIds.isEmpty()) {
+                return ResponseEntity.noContent().build(); // Devuelve 204 si no hay productos
+            }
+            return ResponseEntity.ok(productIds);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build(); // Devuelve 500 para errores inesperados
+        }
+    }
+
     /**
      * Pedidos para el cliente autenticado (según contexto de seguridad).
      * Devuelve 403 si el usuario no es un cliente válido.

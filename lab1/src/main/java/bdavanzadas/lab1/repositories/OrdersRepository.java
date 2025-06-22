@@ -110,6 +110,11 @@ public class OrdersRepository implements OrdersRepositoryInt {
                 ));
     }
 
+    public List<Integer> getProductIdsByOrderId(int orderId) {
+        String sql = "SELECT product_id FROM order_products WHERE order_id = ?";
+        return jdbcTemplate.queryForList(sql, Integer.class, orderId);
+    }
+
     /**
      * Metodo para buscar un order por su clientId.
      * @param "clientId" El id del client a buscar.

@@ -20,20 +20,27 @@ public class MigrationService {
     private final CompanyService companyService;
     private final CoverageAreaDocumentRepository coverageAreaDocumentRepository;
     private final EmergencyReportDocumentRepository emergencyReportDocumentRepository;
+    private final OrderDetailDocumentRepository orderDetailDocumentRepository;
+    private final OrderDocumentRepository orderDocumentRepository;
+    private final OrdersService ordersService;
 
     public MigrationService(ClientDocumentRepository clientDocumentRepository,
                             DealerDocumentRepository dealerDocumentRepository,
                             CompanyService companyService,
                             CompanyDocumentRepository companyDocumentRepository,
                             CoverageAreaDocumentRepository coverageAreaDocumentRepository,
-                            EmergencyReportDocumentRepository emergencyReportDocumentRepository) {
+                            EmergencyReportDocumentRepository emergencyReportDocumentRepository,
+                            OrderDetailDocumentRepository orderDetailDocumentRepository,
+                            OrderDocumentRepository orderDocumentRepository, OrdersService ordersService) {
         this.clientDocumentRepository = clientDocumentRepository;
         this.dealerDocumentRepository = dealerDocumentRepository;
         this.companyService = companyService;
         this.companyDocumentRepository = companyDocumentRepository;
         this.coverageAreaDocumentRepository = coverageAreaDocumentRepository;
         this.emergencyReportDocumentRepository = emergencyReportDocumentRepository;
-
+        this.orderDetailDocumentRepository = orderDetailDocumentRepository;
+        this.orderDocumentRepository = orderDocumentRepository;
+        this.ordersService = ordersService;
     }
 
     public void migrateClientToMongo(ClientEntity entityFromPostgres) {
@@ -120,6 +127,40 @@ public class MigrationService {
 
         EmergencyReportDocument document = EmergencyReportMapper.fromEmergencyReportEntity(entityFromPostgres);
         emergencyReportDocumentRepository.save(document);
+    }
+
+    public void migrateOrderDetailToMongo(OrderDetailsEntity entityFromPostgres) {
+        Integer orderDetailId = entityFromPostgres.getId();
+
+        // Verificamos si ya existe un documento para este orderDetailId
+        if (orderDetailDocumentRepository.existsByOrderDetailId(orderDetailId)) {
+            System.out.println("Documento ya existe para orderDetailId: " + orderDetailId);
+            return;
+        }
+
+        OrderDetailDocument document = OrderDetailMapper.fromOrderDetailsEntity(entityFromPostgres);
+        orderDetailDocumentRepository.save(document);
+    }
+
+    public void migrateOrderToMongo(OrdersEntity order) {
+        Integer orderId = order.getId();
+
+        // Validar si ya existe en Mongo
+        if (orderDocumentRepository.existsByOrderId(orderId)) {
+            System.out.println("Ya existe OrderDocument para orderId: " + orderId);
+            return;
+        }
+
+        // Obtener IDs de productos relacionados
+        List<Integer> productIds = ordersService.getProductIdsByOrderId(order.getId());
+
+        // Mapear la entidad a documento
+        OrderDocument document = OrderMapper.fromOrdersEntity(order, productIds);
+
+        // Guardar en Mongo
+        orderDocumentRepository.save(document);
+
+        System.out.println("Migración exitosa para orderId: " + orderId);
     }
 
 
