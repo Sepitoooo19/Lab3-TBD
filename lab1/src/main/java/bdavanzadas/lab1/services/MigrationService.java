@@ -188,6 +188,19 @@ public class MigrationService {
         paymentMethodDocumentRepository.save(document);
     }
 
+    public void migrateProductToMongo(ProductEntity entityFromPostgres) {
+        Integer productId = entityFromPostgres.getId();
+
+        // Verificamos si ya existe un documento para este productId
+        if (productDocumentRepository.existsByProductId(productId)) {
+            System.out.println("Documento ya existe para productId: " + productId);
+            return;
+        }
+
+        ProductDocument document = ProductMapper.fromProductEntity(entityFromPostgres);
+        productDocumentRepository.save(document);
+    }
+
 
 
 }

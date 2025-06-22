@@ -5,6 +5,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ProductDocumentRepository extends MongoRepository<ProductDocument, String> {
 
@@ -20,5 +21,8 @@ public interface ProductDocumentRepository extends MongoRepository<ProductDocume
 
     // Buscar por ID de compañía
     List<ProductDocument> findByCompanyId(String companyId);
+
+    boolean existsByProductId(Integer productId);
+    Optional<ProductDocument> findByProductId(Integer productId);
 
 }

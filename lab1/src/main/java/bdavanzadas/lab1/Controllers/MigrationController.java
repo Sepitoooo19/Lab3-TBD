@@ -143,4 +143,15 @@ public class MigrationController {
 
         return ResponseEntity.ok("Métodos de pago migrados a MongoDB");
     }
+
+    @PostMapping("/products")
+    public ResponseEntity<String> migrateProductsToMongo() {
+        List<ProductEntity> postgresProducts = productService.getAllProducts();
+
+        for (ProductEntity product : postgresProducts) {
+            migrationService.migrateProductToMongo(product);
+        }
+
+        return ResponseEntity.ok("Productos migrados a MongoDB");
+    }
 }

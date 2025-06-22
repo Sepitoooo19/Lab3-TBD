@@ -15,6 +15,9 @@ public class UserDocument {
     @Id
     private String id;  // MongoDB usa String o ObjectId para el ID (en lugar de "SERIAL")
 
+    @Indexed(unique = true)
+    private Integer userId;
+
     @Indexed(unique = true)  // Equivalente a UNIQUE en PostgreSQL
     private String username;
 
