@@ -5,11 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8def219c-fcda-4bfe-9b1d-3724d649d1c0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/Controllers/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/Controllers/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/Controllers/MigrationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/Controllers/MigrationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/repositories/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/repositories/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/services/MigrationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/services/MigrationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/services/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/documentControllers/ClientDocumentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/documentControllers/ClientDocumentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/documentServices/ClientDocumentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/documentServices/ClientDocumentService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,31 +37,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Spring Boot.Lab1Application.executor": "Run",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Benja/Desktop/Lab3-TBD/lab1/src/main/java/bdavanzadas/lab1/documents",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Spring Boot.Lab1Application.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Benja/Desktop/Lab3-TBD/lab1/src/main/java/bdavanzadas/lab1/documents&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "postgresql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Benja\Desktop\Lab3-TBD\lab1\src\main\java\bdavanzadas\lab1\documents" />
@@ -92,8 +90,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.23726.103" />
-        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.23726.103" />
+        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.26775.15" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.26775.15" />
       </set>
     </attachedChunks>
   </component>
@@ -108,6 +106,8 @@
       <workItem from="1750545963112" duration="377000" />
       <workItem from="1750546348100" duration="1282000" />
       <workItem from="1750553569282" duration="12259000" />
+      <workItem from="1750642800871" duration="232000" />
+      <workItem from="1750643185444" duration="306000" />
     </task>
     <servers />
   </component>
