@@ -17,7 +17,7 @@ public class ClientMapper {
         doc.setEmail(entity.getEmail());
         doc.setPhone(entity.getPhone());
         doc.setAddress(entity.getAddress());
-        doc.setUserId(String.valueOf(entity.getUserId()));
+        doc.setUserId(entity.getUserId());
 
         if (entity.getUbication() != null && entity.getUbication().startsWith("POINT(")) {
             String wkt = entity.getUbication()

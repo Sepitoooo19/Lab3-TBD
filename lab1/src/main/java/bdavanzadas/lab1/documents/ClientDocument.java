@@ -23,5 +23,5 @@ public class ClientDocument {
     private GeoJsonPoint location;
 
     @Indexed(unique = true)
-    private String userId;
+    private Integer userId;
 }

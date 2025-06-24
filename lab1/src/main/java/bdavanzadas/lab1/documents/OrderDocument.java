@@ -23,8 +23,8 @@ public class OrderDocument {
     private LocalDateTime orderDate;
     private LocalDateTime deliveryDate;
     private String status;
-    private String clientId;
-    private String dealerId;
+    private Integer clientId;
+    private Integer dealerId;
     private double totalPrice;
     private GeoJsonLineString estimatedRoute;
     private List<String> productIds;

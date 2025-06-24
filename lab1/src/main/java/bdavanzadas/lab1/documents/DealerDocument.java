@@ -24,5 +24,5 @@ public class DealerDocument {
     private GeoJsonPoint location;
 
     @Indexed(unique = true)
-    private String userId; // Relación con User
+    private Integer userId; // Relación con User
 }

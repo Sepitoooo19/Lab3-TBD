@@ -15,9 +15,9 @@ public class RatingMapper {
         document.setRatingId(entity.getId());
         document.setRating(entity.getRating());
         document.setDate(convertDateToLocalDate(entity.getDate()));
-        document.setClientId(String.valueOf(entity.getClientId()));
-        document.setDealerId(String.valueOf(entity.getDealerId()));
-        document.setOrderId(String.valueOf(entity.getOrderId()));
+        document.setClientId(entity.getClientId());
+        document.setDealerId(entity.getDealerId());
+        document.setOrderId(entity.getOrderId());
         document.setComment(entity.getComment());
 
         return document;

@@ -19,7 +19,7 @@ public class RatingDocument {
     private int rating;
     private String comment;
     private LocalDate date;
-    private String clientId;
-    private String dealerId;
-    private String orderId;
+    private Integer clientId;
+    private Integer dealerId;
+    private Integer orderId;
 }

@@ -14,7 +14,7 @@ public class OrderDetailDocument {
     private String id;
     @Indexed(unique = true)
     private Integer orderDetailId;
-    private String orderId;
+    private Integer orderId;
     private String paymentMethod;
     private int totalProducts;
     private double price;

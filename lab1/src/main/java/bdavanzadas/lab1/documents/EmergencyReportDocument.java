@@ -16,7 +16,7 @@ public class EmergencyReportDocument {
 
     @Indexed(unique = true)
     private Integer reportId;
-    private String orderId;
-    private String dealerId;
+    private Integer orderId;
+    private Integer dealerId;
     private GeoJsonPoint location;
 }

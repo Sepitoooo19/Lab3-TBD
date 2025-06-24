@@ -13,8 +13,8 @@ public class EmergencyReportMapper {
 
 
 
-        document.setOrderId(String.valueOf(entity.getOrderId()));
-        document.setDealerId(String.valueOf(entity.getDealerId()));
+        document.setOrderId(entity.getOrderId());
+        document.setDealerId(entity.getDealerId());
 
         // Convertir ubicación WKT "POINT(lon lat)" a GeoJsonPoint
         if (entity.getUbication() != null && entity.getUbication().startsWith("POINT(")) {

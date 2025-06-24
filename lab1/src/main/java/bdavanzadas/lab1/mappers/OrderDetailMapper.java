@@ -9,7 +9,7 @@ public class OrderDetailMapper {
         OrderDetailDocument document = new OrderDetailDocument();
 
         document.setOrderDetailId(entity.getId());
-        document.setOrderId(String.valueOf(entity.getOrderId()));
+        document.setOrderId(entity.getOrderId());
         document.setPaymentMethod(entity.getPaymentMethod());
         document.setPrice(entity.getPrice());
         document.setTotalProducts(entity.getTotalProducts());

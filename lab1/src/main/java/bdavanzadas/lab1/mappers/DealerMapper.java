@@ -24,7 +24,7 @@ public class DealerMapper {
         document.setPlate(entity.getPlate());
         document.setVehicle(entity.getVehicle());
 
-        document.setUserId(String.valueOf(entity.getUserId()));
+        document.setUserId(entity.getUserId());
 
         if (entity.getUbication() != null && entity.getUbication().startsWith("POINT(")) {
             String wkt = entity.getUbication()
