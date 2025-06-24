@@ -2,6 +2,7 @@ package bdavanzadas.lab1.documentControllers;
 
 import bdavanzadas.lab1.documents.OrderLogDocument;
 import bdavanzadas.lab1.documentServices.OrderLogDocumentService;
+import bdavanzadas.lab1.dtos.RapidChangeOrderDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -38,5 +39,10 @@ public class OrderLogDocumentController {
     public ResponseEntity<Void> delete(@PathVariable String id) {
         service.deleteById(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/rapid-change-details")
+    public ResponseEntity<List<RapidChangeOrderDTO>> getRapidChangeDetails() {
+        return ResponseEntity.ok(service.getOrdersWithRapidChangesDetailed());
     }
 }

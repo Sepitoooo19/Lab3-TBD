@@ -2,6 +2,7 @@ package bdavanzadas.lab1.documentControllers;
 
 import bdavanzadas.lab1.documents.CustomerReviewDocument;
 import bdavanzadas.lab1.documentServices.CustomerReviewDocumentService;
+import bdavanzadas.lab1.projections.ReviewHourStatsProjection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -68,5 +69,10 @@ public class CustomerReviewDocumentController {
             @RequestParam List<String> keywords) {
         String joined = String.join("|", keywords); // e.g., "demora|error"
         return ResponseEntity.ok(service.findByKeywords(joined));
+    }
+
+    @GetMapping("/hourly-stats")
+    public List<ReviewHourStatsProjection> getReviewStatsByHour() {
+        return service.getReviewStatsByHour();
     }
 }

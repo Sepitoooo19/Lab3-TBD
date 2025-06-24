@@ -2,6 +2,7 @@ package bdavanzadas.lab1.documentRepositories;
 
 import bdavanzadas.lab1.documents.CustomerReviewDocument;
 import bdavanzadas.lab1.projections.AverageRatingWithNameProjection;
+import bdavanzadas.lab1.projections.ReviewHourStatsProjection;
 import org.springframework.data.mongodb.repository.Aggregation;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
@@ -27,8 +28,18 @@ public interface CustomerReviewDocumentRepository extends MongoRepository<Custom
     List<AverageRatingWithNameProjection> getAverageRatingWithCompanyName();
 
     // 2.- Listar las opiniones que contengan palabras clave como 'demora' o 'error'.
-    
+
     @Query("{ 'comment': { $regex: ?0, $options: 'i' } }")
     List<CustomerReviewDocument> findByCommentContainingKeywords(String regex);
+
+
+
+    @Aggregation(pipeline = {
+            "{ $project: { hour: { $hour: '$date' }, rating: 1 } }",
+            "{ $group: { _id: '$hour', count: { $sum: 1 }, avgRating: { $avg: '$rating' } } }",
+            "{ $sort: { _id: 1 } }"
+    })
+    List<ReviewHourStatsProjection> getReviewStatsByHour();
+
 
 }

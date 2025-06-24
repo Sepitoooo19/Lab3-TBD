@@ -7,6 +7,7 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
@@ -20,7 +21,7 @@ public class CustomerReviewDocument {
 
     private String comment;
     private int rating;
-    private LocalDate date;
+    private LocalDateTime date;
 
     private Integer clientId;
     private Integer companyId;

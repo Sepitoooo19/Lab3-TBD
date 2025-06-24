@@ -44,8 +44,8 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/**", "/clients/**", "/orders/**","/companies/**","/paymentmethod/**","/products/**", "/dealers/**","/order-details/**","/ratings/**","/coverage-areas/**","/emergencies/**","/migration/**","/documents/**").permitAll()
-                        .requestMatchers("/companies/**").hasAnyRole("ADMIN", "CLIENT", "DEALER")
+                        .requestMatchers("/auth/**", "/clients/**", "/orders/**","/companies/**","/paymentmethod/**","/products/**", "/dealers/**","/order-details/**","/ratings/**","/coverage-areas/**","/emergencies/**","/migration/**","/documents/**","/documents/dealer-history/**").permitAll()
+                        .requestMatchers("/companies/**","/documents/**").hasAnyRole("ADMIN", "CLIENT", "DEALER")
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtFilter(), UsernamePasswordAuthenticationFilter.class);

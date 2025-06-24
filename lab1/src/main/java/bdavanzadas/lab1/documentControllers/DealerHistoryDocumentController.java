@@ -2,11 +2,14 @@ package bdavanzadas.lab1.documentControllers;
 
 import bdavanzadas.lab1.documents.DealerHistoryDocument;
 import bdavanzadas.lab1.documentServices.DealerHistoryDocumentService;
+import bdavanzadas.lab1.projections.DealerFrequentLocationProjection;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/documents/dealer-history")
@@ -39,4 +42,10 @@ public class DealerHistoryDocumentController {
         service.deleteById(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/frequent-locations")
+    public List<DealerFrequentLocationProjection> getFrequentLocations() {
+        return service.getFrequentLocationsLast7Days();
+    }
+
 }

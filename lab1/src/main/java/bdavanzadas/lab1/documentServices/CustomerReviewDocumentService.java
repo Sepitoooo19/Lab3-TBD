@@ -2,6 +2,7 @@ package bdavanzadas.lab1.documentServices;
 
 import bdavanzadas.lab1.documents.CustomerReviewDocument;
 import bdavanzadas.lab1.documentRepositories.CustomerReviewDocumentRepository;
+import bdavanzadas.lab1.projections.ReviewHourStatsProjection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import bdavanzadas.lab1.projections.AverageRatingWithNameProjection;
@@ -55,6 +56,10 @@ public class CustomerReviewDocumentService {
     public List<CustomerReviewDocument> findByKeywords(String... keywords) {
         String joined = String.join("|", keywords); // genera regex: "demora|error"
         return repository.findByCommentContainingKeywords(joined);
+    }
+
+    public List<ReviewHourStatsProjection> getReviewStatsByHour() {
+        return repository.getReviewStatsByHour();
     }
 
 
