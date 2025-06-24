@@ -19,5 +19,5 @@ public interface OrderDocumentRepository extends MongoRepository<OrderDocument, 
     // findById, findAll, save, deleteById ya vienen con MongoRepository
 
     boolean existsByOrderId(Integer orderId);
-    Optional<OrderDetailDocument> findByOrderId(Integer OrderId);
+    Optional<OrderDocument> findByOrderId(Integer OrderId);
 }

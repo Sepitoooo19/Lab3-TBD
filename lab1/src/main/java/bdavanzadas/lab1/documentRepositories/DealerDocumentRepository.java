@@ -21,5 +21,5 @@ public interface DealerDocumentRepository extends MongoRepository<DealerDocument
     String findNameById(String dealerId);
 
     boolean existsByDealerId(Integer clientId);
-    Optional<ClientDocument> findByDealerId(Integer clientId);
+    Optional<DealerDocument> findByDealerId(Integer clientId);
 }
