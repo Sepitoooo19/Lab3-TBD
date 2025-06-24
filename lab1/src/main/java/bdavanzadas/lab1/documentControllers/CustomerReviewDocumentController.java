@@ -62,4 +62,11 @@ public class CustomerReviewDocumentController {
     public ResponseEntity<List<AverageRatingWithNameProjection>> getAverageRatingWithName() {
         return ResponseEntity.ok(service.getAverageRatingWithCompanyName());
     }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<CustomerReviewDocument>> searchByKeywords(
+            @RequestParam List<String> keywords) {
+        String joined = String.join("|", keywords); // e.g., "demora|error"
+        return ResponseEntity.ok(service.findByKeywords(joined));
+    }
 }

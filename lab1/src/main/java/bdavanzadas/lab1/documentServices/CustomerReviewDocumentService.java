@@ -51,4 +51,11 @@ public class CustomerReviewDocumentService {
     public List<AverageRatingWithNameProjection> getAverageRatingWithCompanyName() {
         return repository.getAverageRatingWithCompanyName();
     }
+
+    public List<CustomerReviewDocument> findByKeywords(String... keywords) {
+        String joined = String.join("|", keywords); // genera regex: "demora|error"
+        return repository.findByCommentContainingKeywords(joined);
+    }
+
+
 }
