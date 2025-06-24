@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8def219c-fcda-4bfe-9b1d-3724d649d1c0" name="Changes" comment="" />
+    <list default="true" id="8def219c-fcda-4bfe-9b1d-3724d649d1c0" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/documentControllers/RatingDocumentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/documentControllers/RatingDocumentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/documentServices/RatingDocumentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/documentServices/RatingDocumentService.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -104,7 +107,7 @@
       <workItem from="1750553569282" duration="12259000" />
       <workItem from="1750642800871" duration="232000" />
       <workItem from="1750643185444" duration="1128000" />
-      <workItem from="1750730129552" duration="3914000" />
+      <workItem from="1750730129552" duration="4215000" />
     </task>
     <servers />
   </component>
