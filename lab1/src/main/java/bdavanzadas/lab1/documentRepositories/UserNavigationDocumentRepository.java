@@ -1,6 +1,8 @@
 package bdavanzadas.lab1.documentRepositories;
 
 import bdavanzadas.lab1.documents.UserNavigationDocument;
+import bdavanzadas.lab1.projections.SearchWithoutOrderProjection;
+import org.springframework.data.mongodb.repository.Aggregation;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 
@@ -16,7 +18,7 @@ public interface UserNavigationDocumentRepository extends MongoRepository<UserNa
     // Encontrar por tipo de evento y cliente
     List<UserNavigationDocument> findByClientIdAndEventType(Integer clientId, String eventType);
 
-    // Encontrar clientes distintos que realizaron cierto tipo de evento
-    @Query(value = "{'eventType': ?0}", fields = "{'clientId': 1}")
-    List<Integer> findDistinctClientIdsByEventType(String eventType);
+    // Método básico usando query derivation
+    List<UserNavigationDocument> findByEventTypeNotIn(List<String> excludedEventTypes);
+
 }

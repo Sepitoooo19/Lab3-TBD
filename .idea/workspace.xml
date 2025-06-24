@@ -7,10 +7,8 @@
     <list default="true" id="8def219c-fcda-4bfe-9b1d-3724d649d1c0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/documentControllers/UserNavigationDocumentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/documentControllers/UserNavigationDocumentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/documentRepositories/CustomerReviewDocumentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/documentRepositories/CustomerReviewDocumentRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/documentRepositories/UserNavigationDocumentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/documentRepositories/UserNavigationDocumentRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/documentServices/UserNavigationDocumentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/documentServices/UserNavigationDocumentService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/documents/UserNavigationDocument.java" beforeDir="false" afterPath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/documents/UserNavigationDocument.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,7 +110,7 @@
       <workItem from="1750642800871" duration="232000" />
       <workItem from="1750643185444" duration="1128000" />
       <workItem from="1750730129552" duration="12531000" />
-      <workItem from="1750790230581" duration="4467000" />
+      <workItem from="1750790230581" duration="10481000" />
     </task>
     <servers />
   </component>

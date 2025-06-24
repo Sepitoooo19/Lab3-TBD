@@ -43,8 +43,8 @@ public class UserNavigationDocumentController {
     }
 
 
-    @GetMapping("/searches-without-orders")
-    public ResponseEntity<List<UserNavigationDocument>> getSearchesWithoutOrders() {
-        return ResponseEntity.ok(service.getSearchesWithoutOrders());
+    @GetMapping("/non-order-actions")
+    public ResponseEntity<List<UserNavigationDocument>> getNonOrderActions() {
+        return ResponseEntity.ok(service.getNonOrderNavigationDocuments());
     }
 }
