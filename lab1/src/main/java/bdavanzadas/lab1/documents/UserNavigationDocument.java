@@ -15,7 +15,7 @@ import java.util.Map;
 public class UserNavigationDocument {
     private String id;
 
-    private Integer userId;
+    private Integer clientId;
     private String eventType; // e.g., "search", "click", "filter"
     private Map<String, Object> metadata; // permite flexibilidad para filtros o info adicional
     private LocalDateTime timestamp;

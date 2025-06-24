@@ -33,7 +33,7 @@ public interface CustomerReviewDocumentRepository extends MongoRepository<Custom
     List<CustomerReviewDocument> findByCommentContainingKeywords(String regex);
 
 
-
+    // 6.- Agrupar opiniones por hora del día para analizar patrones de satisfacción.
     @Aggregation(pipeline = {
             "{ $project: { hour: { $hour: '$date' }, rating: 1 } }",
             "{ $group: { _id: '$hour', count: { $sum: 1 }, avgRating: { $avg: '$rating' } } }",

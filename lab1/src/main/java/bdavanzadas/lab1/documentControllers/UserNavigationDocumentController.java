@@ -3,9 +3,11 @@ package bdavanzadas.lab1.documentControllers;
 import bdavanzadas.lab1.documents.UserNavigationDocument;
 import bdavanzadas.lab1.documentServices.UserNavigationDocumentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -24,9 +26,9 @@ public class UserNavigationDocumentController {
         return ResponseEntity.ok(service.getAll());
     }
 
-    @GetMapping("/user/{userId}")
-    public ResponseEntity<List<UserNavigationDocument>> getByUserId(@PathVariable Integer userId) {
-        return ResponseEntity.ok(service.getByUserId(userId));
+    @GetMapping("/user/{clientId}")
+    public ResponseEntity<List<UserNavigationDocument>> getByClientId(@PathVariable Integer clientId) {
+        return ResponseEntity.ok(service.getByClientId(clientId));
     }
 
     @PostMapping
@@ -38,5 +40,11 @@ public class UserNavigationDocumentController {
     public ResponseEntity<Void> delete(@PathVariable String id) {
         service.deleteById(id);
         return ResponseEntity.noContent().build();
+    }
+
+
+    @GetMapping("/searches-without-orders")
+    public ResponseEntity<List<UserNavigationDocument>> getSearchesWithoutOrders() {
+        return ResponseEntity.ok(service.getSearchesWithoutOrders());
     }
 }
