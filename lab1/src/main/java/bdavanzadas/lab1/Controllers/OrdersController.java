@@ -1,6 +1,7 @@
 package bdavanzadas.lab1.Controllers;
 
 import bdavanzadas.lab1.dtos.OrderNameAddressDTO;
+import bdavanzadas.lab1.dtos.OrderRequestDTO;
 import bdavanzadas.lab1.dtos.OrderTotalProductsDTO;
 import bdavanzadas.lab1.dtos.TopSpenderDTO;
 import bdavanzadas.lab1.entities.OrdersEntity;
@@ -193,14 +194,40 @@ public class OrdersController {
             @RequestParam List<Integer> productIds) {
 
         try {
-            // Asume que order.getEstimatedRoute() contiene el WKT
-            ordersService.createOrderWithProducts(order, productIds, null);
-            return ResponseEntity.ok("Orden creada exitosamente");
+            if (order == null) {
+                return ResponseEntity.badRequest().body("La orden no puede ser nula");
+            }
+
+            if (productIds == null || productIds.isEmpty()) {
+                return ResponseEntity.badRequest().body("Debe especificar al menos un producto");
+            }
+
+            ordersService.createOrderWithProducts(order, productIds);
+
+            return ResponseEntity.ok().body(
+                    Map.of(
+                            "status", "success",
+                            "message", "Orden creada exitosamente",
+                            "orderId", order.getId()
+                    )
+            );
+
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(
+                    Map.of(
+                            "status", "error",
+                            "message", e.getMessage()
+                    )
+            );
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+            return ResponseEntity.internalServerError().body(
+                    Map.of(
+                            "status", "error",
+                            "message", "Error interno al crear la orden: " + e.getMessage()
+                    )
+            );
         }
     }
-
 
     /**
      * Endpoint para marcar un pedido como entregado.

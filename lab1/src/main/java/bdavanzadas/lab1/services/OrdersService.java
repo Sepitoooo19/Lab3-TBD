@@ -11,6 +11,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import bdavanzadas.lab1.entities.OrdersEntity;
 import bdavanzadas.lab1.repositories.OrdersRepository;
 import bdavanzadas.lab1.dtos.OrderTotalProductsDTO;
+import java.sql.*;
 
 
 
@@ -201,43 +202,29 @@ public class OrdersService {
      * - ID del dealer (opcional)
      */
     @Transactional
-    public void createOrderWithProducts(OrdersEntity order, List<Integer> productIds,
-                                        List<Map<String, Double>> routePoints) {
-        // 1. Obtener clientId del usuario autenticado
+    public void createOrderWithProducts(OrdersEntity order, List<Integer> productIds) {
         Long userId = userService.getAuthenticatedUserId();
+
+        // 1. Obtener ID del cliente
         String sql = "SELECT id FROM clients WHERE user_id = ?";
         Integer clientId = jdbcTemplate.queryForObject(sql, Integer.class, userId);
-
         if (clientId == null) {
-            throw new IllegalArgumentException("No se encontró cliente asociado al usuario ID: " + userId);
+            throw new IllegalArgumentException("No se encontró un cliente asociado al usuario con ID " + userId);
         }
+
         order.setClientId(clientId);
 
-        // 2. Registrar el pedido con los productos (procedimiento almacenado)
-        sql = "CALL register_order_with_products(?, ?, ?, ?, ?)";
+        // 2. Ejecutar el procedimiento directamente con jdbcTemplate.update
+        sql = "CALL register_order_with_products(?, ?, ?, ?, ?, ?)";
         jdbcTemplate.update(sql,
                 order.getOrderDate(),
                 order.getStatus(),
                 order.getClientId(),
-                productIds.toArray(new Integer[0]),
-                order.getDealerId()
+                productIds.toArray(new Integer[0]), // PASA ARRAY DIRECTO
+                order.getDealerId(),
+                null // No pasamos una ruta estimada, la genera el procedimiento
         );
-
-        // 3. Obtener el ID del pedido recién creado
-        Integer orderId = getLastInsertedOrderId();
-
-        // 4. Si se proporcionaron puntos para la ruta, calcular y guardar
-        if (routePoints != null && !routePoints.isEmpty()) {
-            updateOrderRouteWithPoints(orderId, routePoints);
-        }
-
-        // Opcional: Si el pedido viene con WKT directamente
-        if (order.getEstimatedRoute() != null && !order.getEstimatedRoute().isEmpty()) {
-            updateOrderRouteWithWKT(orderId, order.getEstimatedRoute());
-        }
     }
-
-
     /**
      * Método para obtener el ID del último pedido insertado
      * @return El ID del último pedido insertado

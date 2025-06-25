@@ -206,14 +206,13 @@ CREATE TABLE order_products (
 -- ========================
 -- PROCEDIMIENTOS ALMACENADOS
 -- ========================
-
--- 1 y 3 Registrar un pedido completo y descuenta el stock.
 CREATE OR REPLACE PROCEDURE register_order_with_products(
     p_order_date TIMESTAMP,
     p_status VARCHAR,
     p_client_id INT,
     p_product_ids INT[],
-    p_dealer_id INT DEFAULT NULL  -- Mantener este parámetro aunque no se use
+    p_dealer_id INT DEFAULT NULL,
+    p_estimated_route GEOMETRY DEFAULT NULL
 )
 LANGUAGE plpgsql
 AS $$
@@ -239,19 +238,24 @@ IF v_client_location IS NULL THEN
         RAISE EXCEPTION 'El cliente con ID % no tiene ubicación registrada', p_client_id;
 END IF;
 
-    -- 3. Obtener empresa del primer producto para la ubicación
+    -- 3. Obtener empresa del último producto
 SELECT c.ubication INTO v_company_location
 FROM products p
          JOIN companies c ON p.company_id = c.id
-WHERE p.id = p_product_ids[1]
+WHERE p.id = p_product_ids[array_length(p_product_ids, 1)]
     LIMIT 1;
 
 IF v_company_location IS NULL THEN
-        RAISE EXCEPTION 'No se pudo determinar la ubicación de la empresa para el producto ID %', p_product_ids[1];
+        RAISE EXCEPTION 'No se pudo determinar la ubicación de la empresa para el producto ID %',
+                        p_product_ids[array_length(p_product_ids, 1)];
 END IF;
 
-    -- 4. Calcular ruta recta (línea directa entre empresa y cliente)
-    v_estimated_route := ST_MakeLine(v_company_location, v_client_location);
+    -- 4. Calcular ruta estimada si no viene como parámetro
+    IF p_estimated_route IS NULL THEN
+        v_estimated_route := ST_MakeLine(v_company_location, v_client_location);
+ELSE
+        v_estimated_route := p_estimated_route;
+END IF;
 
     -- 5. Calcular el precio total de los productos
 SELECT COALESCE(SUM(price), 0)
@@ -264,7 +268,7 @@ INSERT INTO orders (
     order_date,
     status,
     client_id,
-    dealer_id,  -- Se usa el parámetro p_dealer_id
+    dealer_id,
     total_price,
     estimated_route
 )
@@ -272,7 +276,7 @@ VALUES (
            p_order_date,
            p_status,
            p_client_id,
-           p_dealer_id,  -- Usar el parámetro en lugar de NULL fijo
+           p_dealer_id,
            v_total_price,
            v_estimated_route
        )
@@ -280,11 +284,16 @@ VALUES (
 
 -- 7. Procesar productos
 FOREACH v_product_id IN ARRAY p_product_ids LOOP
-        -- Registrar producto en la orden
-        INSERT INTO order_products (order_id, product_id)
-        VALUES (v_order_id, v_product_id);
+        -- Verificar existencia
+        IF NOT EXISTS (SELECT 1 FROM products WHERE id = v_product_id) THEN
+            RAISE EXCEPTION 'Producto con ID % no existe', v_product_id;
+END IF;
 
-        -- Reducir stock
+        -- Registrar producto en la orden
+INSERT INTO order_products (order_id, product_id)
+VALUES (v_order_id, v_product_id);
+
+-- Reducir stock
 UPDATE products
 SET stock = stock - 1
 WHERE id = v_product_id AND stock > 0;
@@ -296,46 +305,7 @@ END LOOP;
 END;
 $$;
 
--- ========================
 
--- 2 Cambiar el estado de un pedido con validación
-CREATE OR REPLACE PROCEDURE change_order_status(
-    p_order_id INT,
-    p_new_status VARCHAR,
-    p_delivery_date TIMESTAMP DEFAULT NULL
-)
-LANGUAGE plpgsql
-AS $$
-DECLARE
-v_current_status VARCHAR;
-BEGIN
-    -- Validar que el pedido exista y obtener su estado actual
-SELECT status INTO v_current_status
-FROM orders
-WHERE id = p_order_id;
-
-IF NOT FOUND THEN
-        RAISE EXCEPTION 'Pedido con ID % no existe', p_order_id;
-END IF;
-
-    -- Validar que aún no esté finalizado
-    IF v_current_status IN ('ENTREGADO', 'FALLIDA') THEN
-        RAISE EXCEPTION 'El pedido ya ha sido finalizado con estado %', v_current_status;
-END IF;
-
-    -- Actualizar el estado y la fecha si corresponde
-    IF p_new_status = 'ENTREGADO' THEN
-UPDATE orders
-SET status = p_new_status,
-    delivery_date = COALESCE(p_delivery_date, NOW())
-WHERE id = p_order_id;
-ELSE
-UPDATE orders
-SET status = p_new_status
-WHERE id = p_order_id;
-END IF;
-END;
-$$;
 
 -- ========================
 -- TRIGGERS
