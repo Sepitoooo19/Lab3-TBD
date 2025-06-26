@@ -1,7 +1,11 @@
 package bdavanzadas.lab1.documentServices;
 
+import bdavanzadas.lab1.documentRepositories.OrderDocumentRepository;
+import bdavanzadas.lab1.documentRepositories.ProductDocumentRepository;
 import bdavanzadas.lab1.documents.CompanyDocument;
 import bdavanzadas.lab1.documentRepositories.CompanyDocumentRepository;
+import bdavanzadas.lab1.documents.OrderDocument;
+import bdavanzadas.lab1.documents.ProductDocument;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,10 +16,16 @@ import java.util.Optional;
 public class CompanyDocumentService {
 
     private final CompanyDocumentRepository companyRepository;
+    private final OrderDocumentRepository orderRepository;
+    private final ProductDocumentRepository productRepository;
 
     @Autowired
-    public CompanyDocumentService(CompanyDocumentRepository companyRepository) {
+    public CompanyDocumentService(CompanyDocumentRepository companyRepository,
+                                  OrderDocumentRepository orderRepository,
+                                  ProductDocumentRepository productRepository) {
         this.companyRepository = companyRepository;
+        this.orderRepository = orderRepository;
+        this.productRepository = productRepository;
     }
 
     public Optional<CompanyDocument> getByRut(String rut) {
@@ -62,4 +72,7 @@ public class CompanyDocumentService {
     public List<CompanyDocument> getAll() {
         return companyRepository.findAll();
     }
+
+
 }
+

@@ -4,11 +4,17 @@ import bdavanzadas.lab1.documents.CustomerReviewDocument;
 import bdavanzadas.lab1.documentServices.CustomerReviewDocumentService;
 import bdavanzadas.lab1.projections.ReviewHourStatsProjection;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import bdavanzadas.lab1.projections.AverageRatingWithNameProjection;
 
+import bdavanzadas.lab1.dtos.CompanyReviewDTO;
+import bdavanzadas.lab1.documentServices.CompanyDocumentService;
+import bdavanzadas.lab1.services.UserService;
 
+
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -16,10 +22,16 @@ import java.util.List;
 public class CustomerReviewDocumentController {
 
     private final CustomerReviewDocumentService service;
+    private final CompanyDocumentService companyService;
+    private final UserService userService;
 
     @Autowired
-    public CustomerReviewDocumentController(CustomerReviewDocumentService service) {
+    public CustomerReviewDocumentController(CustomerReviewDocumentService service,
+                                            CompanyDocumentService companyService,
+                                            UserService userService) {
         this.service = service;
+        this.companyService = companyService;
+        this.userService = userService;
     }
 
     @GetMapping
@@ -75,4 +87,33 @@ public class CustomerReviewDocumentController {
     public List<ReviewHourStatsProjection> getReviewStatsByHour() {
         return service.getReviewStatsByHour();
     }
+
+    @PostMapping
+    public ResponseEntity<CustomerReviewDocument> createCompanyReview(
+            @RequestBody CompanyReviewDTO request) {
+
+        // Validar que la empresa exista
+        if (!companyService.existsByCompanyId(request.getCompanyId())) {
+            return ResponseEntity.badRequest().build();
+        }
+
+        // Obtener cliente autenticado
+        Long clientId = userService.getAuthenticatedUserId();
+        if (clientId == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+
+        // Crear y guardar la revisión
+        CustomerReviewDocument review = new CustomerReviewDocument();
+        review.setCompanyId(request.getCompanyId());
+        review.setClientId(Integer.valueOf(clientId.intValue()));
+        review.setRating(request.getRating());
+        review.setComment(request.getComment());
+        review.setDate(LocalDateTime.now());
+
+        return ResponseEntity.ok(service.save(review));
+    }
+
+
+
 }
