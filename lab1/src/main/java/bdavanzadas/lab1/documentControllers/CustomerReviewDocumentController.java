@@ -60,11 +60,12 @@ public class CustomerReviewDocumentController {
         return ResponseEntity.ok(service.existsByReviewId(reviewId));
     }
 
+    /**
     @PostMapping
     public ResponseEntity<CustomerReviewDocument> create(@RequestBody CustomerReviewDocument doc) {
         return ResponseEntity.ok(service.save(doc));
     }
-
+    **/
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable String id) {
         service.deleteById(id);

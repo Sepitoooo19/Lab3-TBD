@@ -7,8 +7,6 @@
     <list default="true" id="8def219c-fcda-4bfe-9b1d-3724d649d1c0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/documentControllers/CustomerReviewDocumentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/documentControllers/CustomerReviewDocumentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/documentServices/CompanyDocumentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/documentServices/CompanyDocumentService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/documentServices/CustomerReviewDocumentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/lab1/src/main/java/bdavanzadas/lab1/documentServices/CustomerReviewDocumentService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +47,7 @@
     &quot;Spring Boot.Lab1Application.executor&quot;: &quot;Run&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Benja/Desktop/Lab2-TBD&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Benja/Desktop/Lab3-TBD&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -113,7 +111,10 @@
       <workItem from="1750790230581" duration="10481000" />
       <workItem from="1750806087413" duration="3035000" />
       <workItem from="1750809163557" duration="1129000" />
-      <workItem from="1750898414999" duration="4358000" />
+      <workItem from="1750898414999" duration="4702000" />
+      <workItem from="1750977336609" duration="1291000" />
+      <workItem from="1750979518006" duration="1025000" />
+      <workItem from="1751074136587" duration="1227000" />
     </task>
     <servers />
   </component>
