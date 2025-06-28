@@ -15,6 +15,7 @@ import bdavanzadas.lab1.services.UserService;
 
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.List;
 
 @RestController
@@ -104,13 +105,13 @@ public class CustomerReviewDocumentController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
 
-        // Crear y guardar la revisión
+        // Crear y guardar la revisión con la zona horaria correcta
         CustomerReviewDocument review = new CustomerReviewDocument();
         review.setCompanyId(request.getCompanyId());
         review.setClientId(Integer.valueOf(clientId.intValue()));
         review.setRating(request.getRating());
         review.setComment(request.getComment());
-        review.setDate(LocalDateTime.now());
+        review.setDate(LocalDateTime.now(ZoneId.of("America/Santiago")));
 
         return ResponseEntity.ok(service.save(review));
     }

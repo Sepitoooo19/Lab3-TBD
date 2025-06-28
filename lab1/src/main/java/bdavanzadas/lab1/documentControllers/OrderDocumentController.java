@@ -37,7 +37,7 @@ public class OrderDocumentController {
     }
 
     @GetMapping("/dealer/{dealerId}")
-    public ResponseEntity<List<OrderDocument>> getByDealerId(@PathVariable String dealerId) {
+    public ResponseEntity<List<OrderDocument>> getByDealerId(@PathVariable Integer dealerId) {
         return ResponseEntity.ok(orderService.getByDealerId(dealerId));
     }
 

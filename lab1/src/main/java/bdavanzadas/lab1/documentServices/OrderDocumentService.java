@@ -22,7 +22,7 @@ public class OrderDocumentService {
         return orderRepository.findByClientId(clientId);
     }
 
-    public List<OrderDocument> getByDealerId(String dealerId) {
+    public List<OrderDocument> getByDealerId(Integer dealerId) {
         return orderRepository.findByDealerId(dealerId);
     }
 

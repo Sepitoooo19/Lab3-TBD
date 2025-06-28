@@ -35,9 +35,9 @@ public interface CustomerReviewDocumentRepository extends MongoRepository<Custom
 
     // 6.- Agrupar opiniones por hora del día para analizar patrones de satisfacción.
     @Aggregation(pipeline = {
-            "{ $project: { hour: { $hour: '$date' }, rating: 1 } }",
-            "{ $group: { _id: '$hour', count: { $sum: 1 }, avgRating: { $avg: '$rating' } } }",
-            "{ $sort: { _id: 1 } }"
+        "{ $project: { hour: { $hour: { date: '$date', timezone: 'America/Santiago' } }, rating: 1 } }",
+        "{ $group: { _id: '$hour', count: { $sum: 1 }, avgRating: { $avg: '$rating' } } }",
+        "{ $sort: { _id: 1 } }"
     })
     List<ReviewHourStatsProjection> getReviewStatsByHour();
 

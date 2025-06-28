@@ -2,14 +2,16 @@ package bdavanzadas.lab1.documentControllers;
 
 import bdavanzadas.lab1.documents.DealerHistoryDocument;
 import bdavanzadas.lab1.documentServices.DealerHistoryDocumentService;
+import bdavanzadas.lab1.dtos.DealerFrequentLocationDTO;
 import bdavanzadas.lab1.projections.DealerFrequentLocationProjection;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
-import java.util.Map;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/documents/dealer-history")
@@ -44,8 +46,43 @@ public class DealerHistoryDocumentController {
     }
 
     @GetMapping("/frequent-locations")
-    public List<DealerFrequentLocationProjection> getFrequentLocations() {
-        return service.getFrequentLocationsLast7Days();
+    public ResponseEntity<List<DealerFrequentLocationDTO>> getFrequentLocations() {
+        try {
+            List<DealerFrequentLocationProjection> projections = service.getFrequentLocationsLast7Days();
+            
+            if (projections == null || projections.isEmpty()) {
+                System.out.println("No se encontraron ubicaciones frecuentes");
+                return ResponseEntity.ok(Collections.emptyList());
+            }
+            
+            List<DealerFrequentLocationDTO> result = projections.stream()
+                .map(projection -> {
+                    try {
+                        List<Double> location = projection.getLocation();
+                        if (location == null || location.size() < 2) {
+                            System.err.println("Ubicación inválida para el repartidor: " + projection.getDealerId());
+                            return null;
+                        }
+                        return new DealerFrequentLocationDTO(
+                            projection.getDealerId(),
+                            location,
+                            projection.getCount() != null ? projection.getCount() : 1L
+                        );
+                    } catch (Exception e) {
+                        System.err.println("Error procesando proyección: " + e.getMessage());
+                        return null;
+                    }
+                })
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
+            
+            System.out.println("Devolviendo " + result.size() + " ubicaciones frecuentes");
+            return ResponseEntity.ok(result);
+        } catch (Exception e) {
+            System.err.println("Error al obtener ubicaciones frecuentes: " + e.getMessage());
+            e.printStackTrace();
+            return ResponseEntity.status(500).build();
+        }
     }
 
 }
