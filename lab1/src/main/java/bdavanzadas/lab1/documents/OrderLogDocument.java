@@ -7,6 +7,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
 
+
+/**
+ * Documento que representa un registro de cambios de estado de un pedido en la base de datos MongoDB.
+ * Contiene información sobre el ID del pedido, el estado del pedido y la fecha y hora del cambio.
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

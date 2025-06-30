@@ -8,6 +8,12 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
 
+
+/**
+ * Documento que representa una calificación de un pedido en la base de datos MongoDB.
+ * Contiene información sobre la calificación, comentario, fecha y referencias
+ * al cliente, concesionario y pedido asociados a la calificación.
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

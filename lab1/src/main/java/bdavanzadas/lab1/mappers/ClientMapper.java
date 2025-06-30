@@ -5,8 +5,20 @@ import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
 
 import bdavanzadas.lab1.documents.ClientDocument;
 
+
+/**
+ * Mapeador para convertir entidades de cliente a documentos de cliente.
+ * Este mapeador transforma los datos de la entidad de cliente
+ * a un documento que puede ser almacenado en MongoDB.
+ */
 public class ClientMapper {
 
+    /**
+     * Convierte una entidad de cliente a un documento de cliente.
+     *
+     * @param entity Entidad de cliente a convertir
+     * @return Documento de cliente con los datos de la entidad
+     */
     public static ClientDocument fromClientEntity(ClientEntity entity) {
         ClientDocument doc = new ClientDocument();
 

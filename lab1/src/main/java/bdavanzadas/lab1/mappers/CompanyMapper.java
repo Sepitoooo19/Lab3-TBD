@@ -6,7 +6,20 @@ import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
 
 import java.util.stream.Collectors;
 
+
+/**
+ * Mapeador para convertir entidades de empresa a documentos de empresa.
+ * Este mapeador transforma los datos de la entidad de empresa
+ * a un documento que puede ser almacenado en MongoDB.
+ */
 public class CompanyMapper {
+
+    /**
+     * Convierte una entidad de empresa a un documento de empresa.
+     *
+     * @param entity Entidad de empresa a convertir
+     * @return Documento de empresa con los datos de la entidad
+     */
     public static CompanyDocument fromCompanyEntity(CompanyEntity entity) {
         CompanyDocument document = new CompanyDocument();
 

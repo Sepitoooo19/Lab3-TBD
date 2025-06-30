@@ -32,11 +32,6 @@ public class ProductController {
     @Autowired
     private ProductService service;
 
-    // -----------------------------------------------------------------
-    // CRUD BÁSICO
-    // -----------------------------------------------------------------
-
-
 
     /**
      * Endpoint para obtener todos los productos.

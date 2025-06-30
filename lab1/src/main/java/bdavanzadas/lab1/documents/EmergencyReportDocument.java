@@ -7,6 +7,14 @@ import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.index.Indexed;
 
+
+/**
+ *
+ * Documento que representa un reporte de emergencia en la base de datos MongoDB.
+ * * Contiene información sobre el ID del reporte, ID de la orden asociada,
+ * * ID del repartidor, y la ubicación geográfica del reporte.
+ *
+ * */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

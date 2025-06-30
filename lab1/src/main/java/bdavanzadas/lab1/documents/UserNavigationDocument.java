@@ -8,6 +8,13 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.time.LocalDateTime;
 import java.util.Map;
 
+
+/**
+ *
+ * Documento que representa la navegación de un usuario en la aplicación.
+ * Contiene información sobre el ID del cliente, el tipo de evento,
+ * metadatos adicionales y la marca de tiempo del evento.
+ * */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -16,7 +23,7 @@ public class UserNavigationDocument {
     private String id;
 
     private Integer clientId;
-    private String eventType; // e.g., "search", "click", "filter"
-    private Map<String, Object> metadata; // permite flexibilidad para filtros o info adicional
+    private String eventType;
+    private Map<String, Object> metadata;
     private LocalDateTime timestamp;
 }

@@ -31,13 +31,6 @@ public class PaymentMethodController {
     @Autowired
     private PaymentMethodService service;
 
-    // -----------------------------------------------------------------
-    // ENDPOINTS CRUD
-    // -----------------------------------------------------------------
-
-
-
-
 
     /**
      * Endpoint para obtener todos los métodos de pago.

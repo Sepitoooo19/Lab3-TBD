@@ -8,8 +8,21 @@ import org.springframework.data.mongodb.core.geo.GeoJsonPolygon;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * Mapeador para convertir entidades de área de cobertura a documentos de área de cobertura.
+ * Este mapeador transforma los datos de la entidad de área de cobertura
+ * a un documento que puede ser almacenado en MongoDB.
+ */
 public class CoverageAreaMapper {
 
+
+    /**
+     * Convierte una entidad de área de cobertura a un documento de área de cobertura.
+     *
+     * @param entity Entidad de área de cobertura a convertir
+     * @return Documento de área de cobertura con los datos de la entidad
+     */
     public static CoverageAreaDocument fromCoverageAreaEntity(CoverageAreaEntity entity) {
         CoverageAreaDocument document = new CoverageAreaDocument();
 

@@ -8,6 +8,14 @@ import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
 import org.springframework.data.mongodb.core.geo.GeoJsonLineString;
 import java.util.Date;
 
+
+/**
+ * Documento que representa un distribuidor en la base de datos MongoDB.
+ * Contiene información básica del distribuidor como ID, nombre, RUT,
+ * email, teléfono, vehículo, placa y ubicación geográfica.
+ * También incluye la ruta más frecuente del repartidor y la fecha de
+ * última actualización de dicha ruta.
+ */
 @Data
 @Document(collection = "dealers")
 public class DealerDocument {

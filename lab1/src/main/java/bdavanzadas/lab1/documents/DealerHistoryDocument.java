@@ -10,6 +10,14 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ *
+ *
+ * Documento que representa el historial de ubicaciones de un repartidor
+ * en la base de datos MongoDB.
+ * * Contiene información sobre el ID del repartidor, una lista de ubicaciones
+ * */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

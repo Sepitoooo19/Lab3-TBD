@@ -6,8 +6,21 @@ import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
 
 import bdavanzadas.lab1.documents.DealerDocument;
 
+
+/**
+ * Mapeador para convertir entidades de repartidor a documentos de repartidor.
+ * Este mapeador transforma los datos de la entidad de repartidor
+ * a un documento que puede ser almacenado en MongoDB.
+ */
 public class DealerMapper {
 
+
+    /**
+     * Convierte una entidad de repartidor a un documento de repartidor.
+     *
+     * @param entity Entidad de repartidor a convertir
+     * @return Documento de repartidor con los datos de la entidad
+     */
     public static DealerDocument fromDealerEntity(DealerEntity entity) {
         if (entity == null) {
             return null;

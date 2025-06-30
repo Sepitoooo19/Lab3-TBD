@@ -6,6 +6,12 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+
+
+/**
+ * Documento que representa un método de pago en la base de datos MongoDB.
+ * Contiene información básica del método de pago como ID, tipo y un identificador único.
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

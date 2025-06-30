@@ -7,8 +7,20 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 
+
+/**
+ * Mapeador para convertir entidades de calificación a documentos de calificación.
+ * Este mapeador transforma los datos de la entidad de calificación
+ * a un documento que puede ser almacenado en MongoDB.
+ */
 public class RatingMapper {
 
+    /**
+     * Convierte una entidad de calificación a un documento de calificación.
+     *
+     * @param entity Entidad de calificación a convertir
+     * @return Documento de calificación con los datos de la entidad
+     */
     public static RatingDocument fromRatingEntity(RatingEntity entity) {
         RatingDocument document = new RatingDocument();
 

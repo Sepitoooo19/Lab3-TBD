@@ -4,8 +4,22 @@ import bdavanzadas.lab1.documents.EmergencyReportDocument;
 import bdavanzadas.lab1.entities.EmergencyReportEntity;
 import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
 
+
+
+/**
+ * Mapeador para convertir entidades de reporte de emergencia a documentos de reporte de emergencia.
+ * Este mapeador transforma los datos de la entidad de reporte de emergencia
+ * a un documento que puede ser almacenado en MongoDB.
+ */
 public class EmergencyReportMapper {
 
+
+    /**
+     * Convierte una entidad de reporte de emergencia a un documento de reporte de emergencia.
+     *
+     * @param entity Entidad de reporte de emergencia a convertir
+     * @return Documento de reporte de emergencia con los datos de la entidad
+     */
     public static EmergencyReportDocument fromEmergencyReportEntity(EmergencyReportEntity entity) {
         EmergencyReportDocument document = new EmergencyReportDocument();
 

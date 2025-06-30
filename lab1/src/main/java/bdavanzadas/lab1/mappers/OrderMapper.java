@@ -12,8 +12,22 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * Mapeador para convertir entidades de pedidos a documentos de pedidos.
+ * Este mapeador transforma los datos de la entidad de pedidos
+ * a un documento que puede ser almacenado en MongoDB.
+ */
 public class OrderMapper {
 
+
+    /**
+     * Convierte una entidad de pedidos a un documento de pedidos.
+     *
+     * @param entity Entidad de pedidos a convertir
+     * @param productIds Lista de IDs de productos asociados al pedido
+     * @return Documento de pedidos con los datos de la entidad
+     */
     public static OrderDocument fromOrdersEntity(OrdersEntity entity, List<Integer> productIds) {
 
         List<String> productIdStrings = new ArrayList<>();

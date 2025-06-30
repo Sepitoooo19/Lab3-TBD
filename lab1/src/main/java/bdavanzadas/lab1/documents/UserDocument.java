@@ -7,6 +7,13 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+
+/**
+ *  Documento que representa un usuario en la base de datos MongoDB.
+ *  * Contiene información sobre el ID del usuario, nombre de usuario, contraseña y rol.
+ *
+ *
+ * */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

@@ -10,6 +10,12 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 
+
+/**
+ * Documento que representa una empresa en la base de datos MongoDB.
+ * Contiene información básica de la empresa como ID, nombre, email,
+ * teléfono, dirección, RUT, tipo, estadísticas de entregas y ubicación geográfica.
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

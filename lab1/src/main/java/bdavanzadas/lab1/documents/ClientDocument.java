@@ -6,6 +6,14 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
 
+
+/**
+ *
+ * Documento que representa un cliente en la base de datos MongoDB.
+ * Contiene información básica del cliente como ID, nombre, RUT,
+ * email, teléfono, dirección y ubicación geográfica.
+ *
+ * */
 @Data
 @Document(collection = "clients")
 public class ClientDocument {
